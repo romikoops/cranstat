@@ -1,0 +1,6 @@
+--color
+--backtrace
+--require spec_helper
+-r turnip/rspec
+--format Fuubar
+--fail-fast=10

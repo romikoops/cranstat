@@ -1,0 +1,35 @@
+<h1>Package List</h1>
+<table>
+  <tr>
+    <th>Package name</th>
+    <th>Version</th>
+    <th>Date/Publication</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Authors</th>
+    <th>Maintainers</th>
+  </tr>
+  <% @packages.each do |pk| %>
+    <tr>
+      <td><%= pk.name %></td>
+      <td><%= pk.version %></td>
+      <td><%= pk.published_at %></td>
+      <td><%= pk.title %></td>
+      <td><%= pk.description %></td>
+      <td>
+        <ul>
+          <% pk.authors.each do |a| %>
+            <li><%= a.full_name %></li>
+          <% end %>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <% pk.maintainers.each do |m| %>
+            <li><%= m.full_name %></li>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+  <% end %>
+</table>

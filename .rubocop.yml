@@ -1,0 +1,50 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  ExtraDetails: true
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  Exclude:
+    - db/**/*
+    - vendor/**/*
+    - bin/*
+    - log/**/*
+    - public/**/*
+
+Rails:
+  Enabled: true
+
+Rails/FindBy:
+  Description: 'Prefer find_by over where.first.'
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/development.rb
+    - config/environments/production.rb
+    - config/routes.rb
+    - spec/**/*.rb
+
+Metrics/ModuleLength:
+  Exclude:
+    - spec/steps/**/*_steps.rb
+
+Rails/OutputSafety:
+  Enabled: false

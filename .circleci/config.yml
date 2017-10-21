@@ -1,0 +1,57 @@
+version: 2
+
+jobs:
+    build:
+      working_directory: ~/cranstat_app
+      docker:
+        - image: circleci/ruby:2.4.1-node-browsers
+          environment:
+            RAILS_ENV: test
+            RACK_ENV: test
+            PG_HOST: localhost
+            PGUSER: ubuntu
+        - image: circleci/postgres:9.4.12-alpine
+          environment:
+            POSTGRES_USER: ubuntu
+            POSTGRES_DB: cranstat_test
+      parallelism: 2
+      steps:
+        - checkout
+        # Restore bundle cache
+        - type: cache-restore
+          key: rails-cranstat-{{ checksum "Gemfile.lock" }}
+
+       # Bundle install dependencies
+        - run: bundle install --path vendor/bundle
+
+       # Store bundle cache
+        - type: cache-save
+          key: rails-cranstat-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+       # Database setup
+        - run: bundle exec rake db:create db:schema:load
+
+        # Rubocop
+        - run: bundle exec rake rubocop
+
+       # Run rspec in parallel
+        - type: shell
+          environment:
+            COVERAGE: false
+          command: |
+            bundle exec rspec --format RspecJunitFormatter \
+                              --out tmp/test-results/rspec.xml \
+                              --color \
+                              --require spec_helper \
+                              --require turnip/rspec \
+                              --fail-fast=10 \
+                              --format Fuubar \
+                              $(circleci tests glob "spec/**/*.feature" | circleci tests split --split-by=timings)
+
+        - store_artifacts:
+            path: tmp/test-results
+
+        - store_artifacts:
+            path: tmp/capybara

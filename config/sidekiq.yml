@@ -1,0 +1,13 @@
+---
+:concurrency: 5
+staging:
+  :concurrency: <%= ENV.fetch('SIDEKIQ_MAX_THREADS', 5) %>
+
+production:
+  :concurrency: <%= ENV.fetch('SIDEKIQ_MAX_THREADS', 5) %>
+
+:queues:
+  - critical
+  - mailers
+  - default
+  - low
