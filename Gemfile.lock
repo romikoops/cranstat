@@ -311,6 +311,7 @@ DEPENDENCIES
   rspec-rails (~> 3.6)
   rspec_junit_formatter
   rubocop
+  safe_yaml
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq
