@@ -28,7 +28,7 @@ The application is deployed with Heroku
 ### Production
 
 ```
-http://
+https://cranstat.herokuapp.com
 ```
 
 ### Development
