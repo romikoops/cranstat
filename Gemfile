@@ -10,6 +10,7 @@ end
 gem 'airbrake'
 gem 'clockwork'
 gem 'coffee-rails', '~> 4.2'
+gem 'dotenv-rails'
 gem 'faraday'
 gem 'jbuilder', '~> 2.5'
 gem 'pg', '~> 0.18'
@@ -23,7 +24,6 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  gem 'dotenv-rails'
   gem 'factory_girl_rails', require: false
   gem 'ffaker'
   gem 'pry-byebug'

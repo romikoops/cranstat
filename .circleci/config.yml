@@ -14,7 +14,7 @@ jobs:
           environment:
             POSTGRES_USER: ubuntu
             POSTGRES_DB: cranstat_test
-      parallelism: 2
+      parallelism: 1
       steps:
         - checkout
         # Restore bundle cache
